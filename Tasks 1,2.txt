@@ -1,0 +1,55 @@
+//Question-1
+//How to compare two JSON have the same properties without order?
+//Answer:
+
+var obj1 = { name: "Person 1", age:5 };
+var obj2 = { age:5, name: "Person 1" };
+
+
+var flag=true;
+
+if(Object.keys(obj1).length==Object.keys(obj2).length){
+    for(key in obj1) { 
+        if(obj1[key] == obj2[key]) {
+            continue;
+        }
+        else {
+            flag=false;
+            break;
+        }
+    }
+}
+else {
+    flag=false;
+}
+console.log(flag);
+
+
+//Question-2
+//Use the rest countries API url -> https://restcountries.eu/rest/v2/all and display all the country flags in console
+//Answer:
+
+var request = new XMLHttpRequest();
+request.open('GET','https://restcountries.com/v2/all',true);
+request.send();
+request.onload=function(){
+    var data = JSON.parse(request.response);
+    
+    for(i = 0; i<data.length; i++){
+         console.log(data[i].flags);
+    }
+}
+
+//Question-3
+//Use the same rest countries and print all countries name, region, sub region and population
+//Answer:
+
+var request = new XMLHttpRequest();
+request.open('GET','https://restcountries.com/v2/all',true);
+request.send();
+request.onload=function(){
+    var data = JSON.parse(request.response);
+    for(i = 0; i<data.length; i++){
+         console.log(data[i].name,data[i].region,data[i].subregion,data[i].population);
+}
+}
